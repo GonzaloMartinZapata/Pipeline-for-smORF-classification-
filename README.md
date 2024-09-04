@@ -27,6 +27,7 @@ The second one, “annotated_info”, works in a similar way. With the same inpu
 python annotated_info.py -f “Bacteria_of_interest”
 
 3- Classification of smORFs by their degree of evolutionary conservation.
+
 We used three different programs originally developed for pangenome analysis to evaluate smORF conservation along the different genomes (Orthofinder {ref}, Panaroo {ref} and Ortho GNC {ref}). To improve on speed we ran these programs with smORFs/SEPs sequences only, discarding all the other protein encoding genes. The commands and running modes used for each program were: 
 For orthofinder,  orthofinder  –f ./ -S blast -og
 We used Blast instead of diamond since it was reported to be at least 1-2% more accurate –and may be also more adequate for short peptides–, although with a runtime of approximately 20x longer. The -og option stopped the analysis after inferring the Orthogroups as we were not interested in the phylogenetic study of the considered species. 
@@ -49,6 +50,7 @@ python results.py -og Orthogroups.txt -ofgc Orthogroups.GeneCount.tsv -pgd gene_
 where n indicates the number of genomes considered for that species. 
 
 4-Bioinformatic characterization of hypothetical SEPs
+
 We aimed at the functional characterization of SEPs that were classified as “probably conserved” and also were annotated as hypothetical proteins in selected strains of interest. For that purpose -select_genome.py- was developed. This script creates a fasta file with all the SEPs that meet this criteria for a chosen organism. The command-line used was:
 python select_genome.py -csv “csv file of the considered organism” -g accession number of the strain to be studied. 
 This fasta file was used later for characterization using the following programs:
