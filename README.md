@@ -4,7 +4,7 @@ Genomes harbor an enormous number of Open Reading Frames (ORFs); however, determ
 
 It has been demonstrated that SEPs are involved in a wide range of processes in bacteria. However there is no much information on these genes in a large group of bacterias such as Plant Growth Promoting Rhizobacteria (PGPR), most of the bacterial plant pathogens, and certain genera responsible for causing diverse diseases in animals.
 
-## pipieline step by step
+## Methods
 
 1-  Genomic sequences used in this study
 the used genomes were downloaded using NCBI´s command-line program "datasets" using the following command:
