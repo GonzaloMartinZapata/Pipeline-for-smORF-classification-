@@ -4,6 +4,19 @@ Genomes harbor an enormous number of Open Reading Frames (ORFs); however, determ
 
 It has been demonstrated that SEPs are involved in a wide range of processes in bacteria. However there is no much information on these genes in a large group of bacterias such as Plant Growth Promoting Rhizobacteria (PGPR), most of the bacterial plant pathogens, and certain genera responsible for causing diverse diseases in animals.
 
+In this work, we developed a method for extraction, analysis of conservation degree, and classification of smORFs across a genre or species of bacteria. This pipeline consists on the following steps:
+1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
+
+"datasets download genome taxon "Bacteria of interest" --assembly-level complete  --assembly-source RefSeq --exclude-atypical --include gbff --dehydrated --filename Bacteria_of_interest_dataset.zip"
+
+As a result, for each of the analyzed  species a large data package was downloaded as a dehydrated zip archive that contained only metadata and the location of the data on NCBI servers. Once downloaded, the zip file was unzipped in a new folder and then “rehydrated” with the following command:
+
+datasets rehydrate  --directory “bacteria_of_interest”/
+
+Next, we used a bash script (poner nombre del script o algo que lo identifique) provided by the NCBI to rename each file as the assembly accession number of the genome considered. 
+
+
+
 ## Methods
 
 1-  Genomic sequences used in this study
