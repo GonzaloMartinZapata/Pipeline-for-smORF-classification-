@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for file in GC*/genomic.gbff
+do
+directory_name=$(dirname $file)
+accession=$(basename $directory_name)
+mv "${file}" "${directory_name}/${accession}_$(basename $file)"
+done
