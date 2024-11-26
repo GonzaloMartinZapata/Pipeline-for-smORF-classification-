@@ -8,19 +8,24 @@ In this work, we conduct a comprehensive analysis of the current information alr
 
 ![Schematic representation of the pipeline developed for SEP characterization.](https://raw.githubusercontent.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/main/Fig1.png)
 
-## 1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
+**Figure 1:** Schematic representation of the pipeline developed for SEP characterization.
 
-The genomic sequences used in this work were downloaded for each taxon of interest using NCBI´s datasets program using the following comand: 
+## 1- Download genomes for the genera/species of interest using NCBI’s command-line program datasets
 
-"datasets download genome taxon "Bacteria of interest" --assembly-level complete  --assembly-source RefSeq --exclude-atypical --include gbff --dehydrated --filename Bacteria_of_interest_dataset.zip"
+The genomic sequences used in this work were downloaded for each taxon of interest using NCBI’s datasets program with the following command:
 
-As a result, for each of the analyzed  species a large data package was downloaded as a dehydrated zip archive that contained only metadata and the location of the data on NCBI servers. Once downloaded, the zip file was unzipped in a new folder and then “rehydrated” with the following command:
+datasets download genome taxon "Bacteria of interest" --assembly-level complete --assembly-source RefSeq --exclude-atypical --include gbff --dehydrated --filename Bacteria_of_interest_dataset.zip
 
-datasets rehydrate  --directory “bacteria_of_interest”/
+As a result, for each of the analyzed species, a large data package was downloaded as a dehydrated zip archive containing only metadata and the location of the data on NCBI servers. Once downloaded, the zip file was unzipped into a new folder and then “rehydrated” with the following command:
 
-Next, we used a bash script ([rename.sh](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/rename.sh.txt)) provided by the NCBI to rename each file as the assembly accession number of the genome considered. 
+datasets rehydrate --directory “bacteria_of_interest”/
 
-When more than 100 sequences met the selection criteria the following analysis was done. First, all the selected genomes were downloaded and the FastANI software was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as reference and all the downloaded genomes (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb). Approximately fifty genomes were then selected by sampling the complete ANI value range. Three particular cases that presented a larger number of genomic sequences were also considered. For Bacillus, we applied the same selection method as with the other genera, but we considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus, maintaining the necessary variation. For Pseudomonas and Klebsiella most genomes were for a particular species. In those cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genera.
+Next, we used a bash script ([rename.sh](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/rename.sh)) provided by the NCBI to rename each file using the assembly accession number of the genome considered.
+
+When more than 100 sequences met the selection criteria, the following analysis was performed. First, all the selected genomes were downloaded, and the FastANI software was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as a reference and all the downloaded genomes ([FastANI tree script](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb)). Approximately fifty genomes were then selected by sampling the complete ANI value range.
+
+Three particular cases that presented a larger number of genomic sequences were also considered: - **Bacillus**: We applied the same selection method as with the other genera but considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus while maintaining the necessary variation. - **Pseudomonas** and **Klebsiella**: Most genomes were for a particular species. In these cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genus.
+
 
 ## 2- Extraction of the annotated SEP sequences and their associated information.
 
