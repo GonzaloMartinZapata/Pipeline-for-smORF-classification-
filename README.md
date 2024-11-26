@@ -6,9 +6,9 @@ It has been demonstrated that SEPs are involved in a wide range of processes in 
 
 In this work, we developed a method for extraction, analysis of conservation degree, and classification of smORFs across a genre or species of bacteria. This pipeline consists on the following steps:
 
-![Descripción de la imagen](https://raw.githubusercontent.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/main/Fig1.png)
+![Schematic representation of the pipeline developed for SEP characterization.](https://raw.githubusercontent.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/main/Fig1.png)
 
-1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
+## 1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
 
 "datasets download genome taxon "Bacteria of interest" --assembly-level complete  --assembly-source RefSeq --exclude-atypical --include gbff --dehydrated --filename Bacteria_of_interest_dataset.zip"
 
@@ -20,7 +20,7 @@ Next, we used a bash script ([rename.sh](https://github.com/GonzaloMartinZapata/
 
 When more than 100 sequences met the selection criteria the following analysis was done. First, all the selected genomes were downloaded and the FastANI software {@cita} was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as reference and all the downloaded genomes (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb). Approximately fifty genomes were then selected by sampling the complete ANI value range. Three particular cases that presented a larger number of genomic sequences were also considered. For Bacillus, we applied the same selection method as with the other genera, but we considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus, maintaining the necessary variation. For Pseudomonas and Klebsiella most genomes were for a particular species. In those cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genera.
 
-2- Extraction of the annotated SEP sequences and their associated information.
+## 2- Extraction of the annotated SEP sequences and their associated information.
 
 Two different python scripts were developed to work with the downloaded genomes. These scripts use Biopython {cita} to access the previously downloaded genbank files and extract the SEPs and the annotation information associated with them. The first one, that we called “annotated_smorfs” (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/annotated_smorfs.py), extracts all the features that are translated and have a size of less than or equal to 70 amino acids. This script produces a fasta file foreach genome with all the coding sequences that meet our criteria. These files were used later to study the conservation of each smORF in the pangenome. The input for this script was a folder containing all the Genbank files of the considered species, and was runned with the following command
 
@@ -30,7 +30,7 @@ The second one, “annotated_info” (https://github.com/GonzaloMartinZapata/Pip
 
 python annotated_info.py -f “Bacteria_of_interest”
 
-3- Classification of smORFs by their degree of evolutionary conservation.
+## 3- Classification of smORFs by their degree of evolutionary conservation.
 
 We used three different programs originally developed for pangenome analysis to evaluate smORF conservation along the different genomes (Orthofinder {ref}, Panaroo {ref} and Ortho GNC {ref}). To improve on speed we ran these programs with smORFs/SEPs sequences only, discarding all the other protein encoding genes. The commands and running modes used for each program were: 
 
