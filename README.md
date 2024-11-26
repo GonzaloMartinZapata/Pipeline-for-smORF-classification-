@@ -45,6 +45,7 @@ We used Blast instead of diamond since it was reported to be at least 1-2% more 
 For panaroo, the inputs were files in Prokka GFF3 format.  As we used only the smORFs sequences, a GFF3 file with the annotation information for smORFs only had to be made ([gbToGFF.py](gbToGFF.py)). For that purpose we used a custom script that “filtered” the Genbank files by size and then using the GFF python module converted it into the required format. Then, Panaroo was run with the following commands:
 
 *mkdir Panaroo_results*
+
 *panaroo -i *.gff -o results –clean-mode strict*
 
 Lastly, Ortho GNC was run using the extracted protein sequences and the recommended settings.  
