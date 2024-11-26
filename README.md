@@ -20,9 +20,9 @@ As a result, for each of the analyzed species, a large data package was download
 
 datasets rehydrate --directory “bacteria_of_interest”/
 
-Next, we used a bash script ([rename.sh](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/rename.sh)) provided by the NCBI to rename each file using the assembly accession number of the genome considered.
+Next, we used a bash script ([rename.sh](rename.sh.txt)) provided by the NCBI to rename each file using the assembly accession number of the genome considered.
 
-When more than 100 sequences met the selection criteria, the following analysis was performed. First, all the selected genomes were downloaded, and the FastANI software was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as a reference and all the downloaded genomes ([FastANI tree script](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb)). Approximately fifty genomes were then selected by sampling the complete ANI value range.
+When more than 100 sequences met the selection criteria, the following analysis was performed. First, all the selected genomes were downloaded, and the FastANI software was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as a reference and all the downloaded genomes ([FastANI tree script](Get_genomes_and_make_fastani_tree.ipynb)). Approximately fifty genomes were then selected by sampling the complete ANI value range.
 
 Three particular cases that presented a larger number of genomic sequences were also considered: - **Bacillus**: We applied the same selection method as with the other genera but considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus while maintaining the necessary variation. - **Pseudomonas** and **Klebsiella**: Most genomes were for a particular species. In these cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genus.
 
