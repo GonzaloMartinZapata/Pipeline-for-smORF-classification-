@@ -6,7 +6,7 @@ It has been demonstrated that SEPs are involved in a wide range of processes in 
 
 In this work, we developed a method for extraction, analysis of conservation degree, and classification of smORFs across a genre or species of bacteria. This pipeline consists on the following steps:
 
-https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Fig1.png
+! (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Fig1.png)
 
 1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
 
