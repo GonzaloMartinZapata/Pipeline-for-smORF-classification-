@@ -2,13 +2,15 @@
 
 Genomes harbor an enormous number of Open Reading Frames (ORFs); however, determining which ones will be translated is not trivial, complicating the process of annotating protein-coding sequences. This challenge becomes more pronounced as the size of the ORFs decreases. The use of modern sequencing and proteomic technologies has allowed the observation that many organisms present small Open Reading Frames (smORFs) that are actively transcribed and translated. These smORFs have the potential to encode small-sized polypeptides, known as SEPs (SmORFs Encoded Polypeptides). 
 
-It has been demonstrated that SEPs are involved in a wide range of processes in bacteria. However there is no much information on these genes in a large group of bacterias such as Plant Growth Promoting Rhizobacteria (PGPR), most of the bacterial plant pathogens, and certain genera responsible for causing diverse diseases in animals.
+It has been demonstrated that SEPs are involved in a wide range of processes in bacteria.  The exponential increase in the number of genomic sequences deposited in databases, coupled with the development of new machine learning methods, has led to an improvement in the bioinformatic prediction of smORFs that have the potential to be translated into SEPs. In fact, many genomes that have been recently updated in terms of annotation exhibit a variable number of annotated smORFs. However there is no much information on these genes in a large group of bacterias such as Plant Growth Promoting Rhizobacteria (PGPR), most of the bacterial plant pathogens, and certain genera responsible for causing diverse diseases in animals.
 
-In this work, we developed a method for extraction, analysis of conservation degree, and classification of smORFs across a genre or species of bacteria. This pipeline consists on the following steps:
+In this work, we conduct a comprehensive analysis of the current information already annotated about smORFs in the genomes of diverse bacterial species known to interact with eukaryotic hosts, focusing in particular on the analysis of smORFs from rhizobia, PGPRs and certain pathogens of plants or animals. These pipeline consists of the following steps:
 
 ![Schematic representation of the pipeline developed for SEP characterization.](https://raw.githubusercontent.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/main/Fig1.png)
 
 ## 1- download genomes for the genera/species of interest using NCBI´s command-line program datasets
+
+The genomic sequences used in this work were downloaded for each taxon of interest using NCBI´s datasets program using the following comand: 
 
 "datasets download genome taxon "Bacteria of interest" --assembly-level complete  --assembly-source RefSeq --exclude-atypical --include gbff --dehydrated --filename Bacteria_of_interest_dataset.zip"
 
@@ -18,7 +20,7 @@ datasets rehydrate  --directory “bacteria_of_interest”/
 
 Next, we used a bash script ([rename.sh](https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/rename.sh.txt)) provided by the NCBI to rename each file as the assembly accession number of the genome considered. 
 
-When more than 100 sequences met the selection criteria the following analysis was done. First, all the selected genomes were downloaded and the FastANI software {@cita} was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as reference and all the downloaded genomes (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb). Approximately fifty genomes were then selected by sampling the complete ANI value range. Three particular cases that presented a larger number of genomic sequences were also considered. For Bacillus, we applied the same selection method as with the other genera, but we considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus, maintaining the necessary variation. For Pseudomonas and Klebsiella most genomes were for a particular species. In those cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genera.
+When more than 100 sequences met the selection criteria the following analysis was done. First, all the selected genomes were downloaded and the FastANI software was used to calculate all the pairwise average nucleotide identity (ANI) values between a genome used as reference and all the downloaded genomes (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/Get_genomes_and_make_fastani_tree.ipynb). Approximately fifty genomes were then selected by sampling the complete ANI value range. Three particular cases that presented a larger number of genomic sequences were also considered. For Bacillus, we applied the same selection method as with the other genera, but we considered only genomes available from January 1, 2022, onward. This approach ensured a wide variety of species within the genus, maintaining the necessary variation. For Pseudomonas and Klebsiella most genomes were for a particular species. In those cases, approximately 25 genomes from the three most studied species were used. This approach was considered to provide results that more broadly represented each genera.
 
 ## 2- Extraction of the annotated SEP sequences and their associated information.
 
@@ -57,6 +59,8 @@ For this script, the command used was:
 python results.py -og Orthogroups.txt -ofgc Orthogroups.GeneCount.tsv -pgd gene_data.csv -ppa gene_presence_absence_roary.csv -ognc OutputV2.txt -csv Bacteria_of_interes.csv -n xx
 
 where n indicates the number of genomes considered for that species. 
+
+## 4- Analysis of the obtained results
 
 Finally, a last script (https://github.com/GonzaloMartinZapata/Pipeline-for-smORF-classification-/blob/main/analysis.py) was used to evaluate the obtained results. This script gives the number of smORFs found in the considered genre/species, the average number of smORFs per genome, a pie chart with the distribution according to the conservation rate among other data of interest. The command for this script is:
 
