@@ -67,5 +67,10 @@ Finally, the script ([analysis.py](analysis.py)) is used to evaluate the obtaine
 
 *python analysis.py -r bacteria_of interest.csv -n xx*
 
-The results obtained by this pipeline for all considered genera and species can be found in https://drive.google.com/drive/folders/13I8wmWN56fgk3GREeObXKApagEoQqQg1?usp=drive_link
+
+The obtained tables for all genera and species considered in this work can be found in the [`Results_from_pipeline`](Results_from_pipeline/) directory.
+
+The same tables allong with the graphs generated allong the pipeline are available at: 
+
+https://drive.google.com/drive/folders/13I8wmWN56fgk3GREeObXKApagEoQqQg1?usp=drive_link
 
